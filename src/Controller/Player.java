@@ -26,7 +26,7 @@ public class Player {
 
     JFrame frame;
     Player player2;
-   ;
+    ;
 
     Player(JFrame frame, Ball ball) {
         this.frame = frame;
@@ -103,7 +103,6 @@ public class Player {
             }
         }
     }
-
 
 
     public void keyReleased(KeyEvent e) {

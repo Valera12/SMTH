@@ -16,6 +16,7 @@ public class Ball {
     private static final int FAIL = -1;
     private static final int OK = 4;
 
+
     Player player;
     Player player2;
 
@@ -43,33 +44,35 @@ public class Ball {
         }
     }
 
-    public void dirCheck() {
+    public void rebound() {
         if ((player.getxCoordinate() + 90 > getBallX()) &&
-            (player.getyCoordinate() + 50 > getBallY()) &&
-            (player.getyCoordinate() - 50 < getBallY()))
-        {
+                (player.getyCoordinate() + 50 > getBallY()) &&
+                (player.getyCoordinate() - 50 < getBallY())) {
             setBallDirection(RIGHT);
         }
         if ((player2.getxCoordinate() - 90 < getBallX()) &&
                 (player2.getyCoordinate() + 50 > getBallY()) &&
-                (player2.getyCoordinate() - 50 < getBallY()))
-        {
+                (player2.getyCoordinate() - 50 < getBallY())) {
             setBallDirection(LEFT);
         }
     }
 
 
-    public void showResult(){
-       if(getBallX() <= 90){
-           player.firstPlayerScore = player.firstPlayerScore + 1;
-           System.out.println(player.firstPlayerScore);
-       }
+    public void showResult() {
+        if (getBallX() <= 90) {
+            player.firstPlayerScore = player.firstPlayerScore + 1;
+            System.out.println(player.firstPlayerScore);
+        }
+
+        if (getBallX() >= 1155) {
+            player2.secondPlayerScore = player2.secondPlayerScore + 1;
+            System.out.println(player2.secondPlayerScore);
+        }
     }
 
 
-
-    public void ballCentre(){
-        if((getBallX() < 90) || (getBallX()) > 1150){
+    public void ballCentre() {
+        if ((getBallX() < 90) || (getBallX()) > 1155) {
             setBallX(650);
             setBallY(300);
         }
