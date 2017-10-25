@@ -61,12 +61,12 @@ public class Ball {
     public void showResult() {
         if (getBallX() <= 90) {
             player.firstPlayerScore = player.firstPlayerScore + 1;
-            System.out.println(player.firstPlayerScore);
+            System.out.println("SCORE OF RIGHT PLAYER: " + player.firstPlayerScore);
         }
 
         if (getBallX() >= 1155) {
             player2.secondPlayerScore = player2.secondPlayerScore + 1;
-            System.out.println(player2.secondPlayerScore);
+            System.out.println("SCORE OF LEFT PLAYER: " + player2.secondPlayerScore);
         }
     }
 
