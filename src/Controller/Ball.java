@@ -49,14 +49,18 @@ public class Ball {
                 (player.getyCoordinate() + 50 > getBallY()) &&
                 (player.getyCoordinate() - 50 < getBallY())) {
             setBallDirection(RIGHT);
+            ballSpeed = 0;
+            ballSpeed = 15;
         }
         if ((player2.getxCoordinate() - 90 < getBallX()) &&
                 (player2.getyCoordinate() + 50 > getBallY()) &&
                 (player2.getyCoordinate() - 50 < getBallY())) {
             setBallDirection(LEFT);
+            ballSpeed = 0;
+            ballSpeed = 1;
         }
     }
-
+//вызввтаь метод ребаунд, где скорости мяча присваивается значение 5 10 или 15, если нажата кнопка 1, 2 или 3 для первого игрока
 
     public void showResult() {
         if (getBallX() <= 90) {

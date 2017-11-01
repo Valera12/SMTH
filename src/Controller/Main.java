@@ -1,7 +1,6 @@
 package Controller;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -71,6 +70,9 @@ public class Main extends JPanel implements ActionListener {
         g.drawImage(player.img, player.getxCoordinate(), player.getyCoordinate(), null);
         g.drawImage(player2.img2, player2.getxCoordinate(), player2.getyCoordinate(), null);
         g.drawImage(ball.img, ball.getBallX(), ball.getBallY(), null);
+        g.setColor(Color.red);
+        g.setFont(new Font("Arial", 8, 30));
+        g.drawString(String.valueOf(player2.secondPlayerScore + " : " + player.firstPlayerScore), 200, 75);
 
     }
 
