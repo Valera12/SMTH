@@ -15,6 +15,7 @@ public class Player {
     int firstPlayerScore = 0;
     int secondPlayerScore = 0;
     int goal = 1;
+    int power = 0;
     private static final int UP = 2;
     private static final int DOWN = 3;
     private static final int FAIL = -1;
@@ -25,12 +26,12 @@ public class Player {
 
 
     JFrame frame;
-    Player player2;
-    ;
+    Ball ball;
+
 
     Player(JFrame frame, Ball ball) {
         this.frame = frame;
-
+        this.ball = ball;
     }
 
 

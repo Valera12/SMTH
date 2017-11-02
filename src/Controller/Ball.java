@@ -4,6 +4,7 @@ import com.sun.javafx.scene.traversal.Direction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.lang.management.PlatformLoggingMXBean;
 
 public class Ball {
@@ -30,6 +31,27 @@ public class Ball {
         this.player2 = player2;
     }
 
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_E) {
+            player.power = player.power + 5;
+        }
+        if (key == KeyEvent.VK_Q) {
+            player.power = player.power - 5;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            player2.power = player2.power + 5;
+        }
+        if (key == KeyEvent.VK_LEFT) {
+            player2.power = player2.power - 5;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+
     public void ballMove() {
         switch (currentBallDirection) {
             case LEFT:
@@ -45,22 +67,29 @@ public class Ball {
     }
 
     public void rebound() {
-        if ((player.getxCoordinate() + 90 > getBallX()) &&
-                (player.getyCoordinate() + 50 > getBallY()) &&
-                (player.getyCoordinate() - 50 < getBallY())) {
+        if ((player.getxCoordinate() + 80 > getBallX()) &&
+                (player.getyCoordinate() + 40 > getBallY()) &&
+                (player.getyCoordinate() - 40 < getBallY())) {
             setBallDirection(RIGHT);
-            ballSpeed = 0;
-            ballSpeed = 15;
+            if(player.power < 0 && ballSpeed + player.power <= 0)
+                ballSpeed = 1;
+            else
+                ballSpeed = ballSpeed + player.power;
+            player.power = 0;
         }
-        if ((player2.getxCoordinate() - 90 < getBallX()) &&
-                (player2.getyCoordinate() + 50 > getBallY()) &&
-                (player2.getyCoordinate() - 50 < getBallY())) {
+        if ((player2.getxCoordinate() - 80 < getBallX()) &&
+                (player2.getyCoordinate() + 40 > getBallY()) &&
+                (player2.getyCoordinate() - 40 < getBallY())) {
             setBallDirection(LEFT);
-            ballSpeed = 0;
-            ballSpeed = 1;
+            if(player2.power < 0 && ballSpeed + player2.power <= 0)
+                ballSpeed = 1;
+            else
+                ballSpeed = ballSpeed + player2.power;
+
+            player2.power = 0;
         }
     }
-//вызввтаь метод ребаунд, где скорости мяча присваивается значение 5 10 или 15, если нажата кнопка 1, 2 или 3 для первого игрока
+
 
     public void showResult() {
         if (getBallX() <= 90) {
@@ -82,7 +111,13 @@ public class Ball {
         }
     }
 
-    public int getBallSpeed() {
+    public void finishGame() {
+        if ((player.firstPlayerScore == 11) || (player2.secondPlayerScore == 11)) {
+            frame.dispose();
+        }
+    }
+
+    public double getBallSpeed() {
         return ballSpeed;
     }
 

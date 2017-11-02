@@ -14,6 +14,7 @@ public class Main extends JPanel implements ActionListener {
 
     Timer timer = new Timer(20, this);
 
+
     Player player;
     Player player2;
     Ball ball;
@@ -63,6 +64,20 @@ public class Main extends JPanel implements ActionListener {
                 player2.keyReleased(e);
             }
         });
+
+        frame.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                ball.keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                ball.keyReleased(e);
+            }
+
+        });
     }
 
     public void paint(Graphics g) {
@@ -71,9 +86,12 @@ public class Main extends JPanel implements ActionListener {
         g.drawImage(player2.img2, player2.getxCoordinate(), player2.getyCoordinate(), null);
         g.drawImage(ball.img, ball.getBallX(), ball.getBallY(), null);
         g.setColor(Color.red);
-        g.setFont(new Font("Arial", 8, 30));
-        g.drawString(String.valueOf(player2.secondPlayerScore + " : " + player.firstPlayerScore), 200, 75);
-
+        g.setFont(new Font("Arial", 8, 45));
+        g.drawString(String.valueOf(player2.secondPlayerScore + " : " + player.firstPlayerScore), 650, 90);
+        g.setColor(Color.red);
+        g.setFont(new Font("Arial", 8, 45));
+        g.drawString(String.valueOf(player.power), 100, 90);
+        g.drawString(String.valueOf(player2.power), 1000, 90);
     }
 
     @Override
@@ -87,6 +105,7 @@ public class Main extends JPanel implements ActionListener {
         ball.rebound();
         ball.showResult();
         ball.ballCentre();
+        ball.finishGame();
 
         repaint();
     }
