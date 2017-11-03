@@ -1,38 +1,26 @@
 package Controller;
 
-import com.sun.javafx.scene.traversal.Direction;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 
 public class Player {
 
-    int xCoordinate;
-    int yCoordinate;
-    int speed;
-    int firstPlayerScore = 0;
-    int secondPlayerScore = 0;
-    int goal = 1;
+    private int xCoordinate;
+    private int yCoordinate;
+    private int speed;
+    public int firstPlayerScore = 0;
+    public int secondPlayerScore = 0;
     int power = 0;
+    private int frameWidth = 1366;
+    private int frameHigh = 768;
+    private int safeZoneUp = 675;
+    private int SafeZoneDown = 250;
+    private int safeZoneCentre = 780;
     private static final int UP = 2;
     private static final int DOWN = 3;
     private static final int FAIL = -1;
     private static final int OK = 4;
-
-    Image img = new ImageIcon("res/playerOne.png").getImage();
-    Image img2 = new ImageIcon("res/playerTwo.png").getImage();
-
-
-    JFrame frame;
-    Ball ball;
-
-
-    Player(JFrame frame, Ball ball) {
-        this.frame = frame;
-        this.ball = ball;
-    }
+    private static final int FINAL_SCORE = 11;
 
 
     public void move(int direction) {
@@ -53,14 +41,14 @@ public class Player {
     public int stopZone(int direction) {
         switch (direction) {
             case UP:
-                if ((yCoordinate + speed) > (frame.getHeight() - 675)) {
+                if ((yCoordinate + speed) > (frameHigh - safeZoneUp)) {
                     return OK;
                 } else {
                     return FAIL;
                 }
 
             case DOWN:
-                if ((yCoordinate - speed) < frame.getHeight() - 250) {
+                if ((yCoordinate - speed) < frameHigh - SafeZoneDown) {
                     return OK;
                 } else {
                     return FAIL;
@@ -72,7 +60,7 @@ public class Player {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if ((frame.getWidth() - 780) > xCoordinate) {
+        if ((frameWidth - safeZoneCentre) > xCoordinate) {
             if (key == KeyEvent.VK_W) {
                 if (stopZone(UP) == OK) {
                     move(UP);
